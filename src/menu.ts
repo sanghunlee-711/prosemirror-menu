@@ -308,12 +308,12 @@ export function renderGrouped(view: EditorView, content: readonly (readonly Menu
   let result = document.createDocumentFragment()
   let updates: ((state: EditorState) => boolean)[] = [], separators: HTMLElement[] = []
   for (let i = 0; i < content.length; i++) {
-    let items = content[i], localUpdates = [], localNodes = []
+    let items = content[i], localUpdates:((state: EditorState) => boolean)[] = [], localNodes:HTMLElement[] = []
     for (let j = 0; j < items.length; j++) {
       let {dom, update} = items[j].render(view)
-      let span = crel("span", {class: prefix + "item"}, dom)
-      result.appendChild(span)
-      localNodes.push(span)
+      let button = crel("button", {class: prefix + "item"}, dom)
+      result.appendChild(button)
+      localNodes.push(button)
       localUpdates.push(update)
     }
     if (localUpdates.length) {
