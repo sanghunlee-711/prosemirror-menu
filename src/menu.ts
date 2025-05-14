@@ -225,7 +225,7 @@ export class Dropdown implements MenuElement {
 }
 
 function renderDropdownItems(items: readonly MenuElement[], view: EditorView) {
-  let rendered = [], updates = []
+  let rendered:HTMLElement[] = [], updates:((state: EditorState) => boolean)[] = []
   for (let i = 0; i < items.length; i++) {
     let {dom, update} = items[i].render(view)
     rendered.push(crel("div", {class: prefix + "-dropdown-item"}, dom))
